@@ -1,6 +1,5 @@
 package com.example.mydatasiswa.modeldata
 
-import android.telecom.Call
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -16,6 +15,8 @@ data class UIStateSiswa(
     val nama: String = "",
     val alamat: String = "",
     val telpon: String = "",
+    val isEntryValid: Boolean,
+    val detailSiswa: DetailSiswa,
 )
 
 data class DetailSiswa(
@@ -31,3 +32,9 @@ fun DetailSiswa.toDataSiswa(): DataSiswa = DataSiswa(
     alamat = alamat,
     telpon = telpon,
 )
+
+fun DataSiswa.toUiStateSiswa(isEntryValid: Boolean = false): UIStateSiswa = UIStateSiswa(
+    detailSiswa = this.toDetailSiswa(),
+    isEntryValid = isEntryValid
+)
+
